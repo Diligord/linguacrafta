@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
 import java.io.File;
@@ -17,10 +18,12 @@ public class ExampleClientMixin {
 	private void init(CallbackInfo info) {
 		Scanner sc = new Scanner(System.in);
 		Path path = FabricLoader.getInstance().getGameDir();
-		System.out.println(path);
-		//if () {
-
-		//}
+		File lingua = new File(path + "/linguacrafta");
+		if (lingua.mkdir()) {
+			System.out.println("LINGUA PATH CREATED");
+		} else {
+			System.out.println("LINGUA PATH NOT CREATED (this is okay if it already exists :3)");
+		}
 		// This code is injected into the start of MinecraftClient.run()V
 	}
 }
